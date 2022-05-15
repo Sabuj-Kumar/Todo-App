@@ -61,7 +61,7 @@ class _RunPageState extends State<RunPage> {
 
     if(pref.containsKey(todoList)){
       var list = pref.getString(todoList);
-      print("$list");
+      print("list $list");
      for(var item in jsonDecode(list!)){
        BlocProvider.of<TodoBloc>(context).add(AddTodo(todoModel: TodoModel.fromJson(item)));
      }

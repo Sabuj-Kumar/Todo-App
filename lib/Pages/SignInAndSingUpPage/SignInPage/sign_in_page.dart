@@ -1,14 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mind_orbit_todo/Models/RegisterModel/register_model.dart';
 import 'package:mind_orbit_todo/Pages/AppBars/app_bars.dart';
 import 'package:mind_orbit_todo/Pages/HomePage/home_page.dart';
 import 'package:mind_orbit_todo/Repositories/sign_up_repositories.dart';
 import 'package:mind_orbit_todo/screen_heigt_with.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../Bloc/bloc_provider.dart';
 import '../../InputForm/input_form.dart';
 import '../../NecessaryStrings/necessary_strings.dart';
 import '../SignUpPage/sign_up_page.dart';
@@ -25,7 +21,7 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBars(context: context,titleColor: Colors.black87,title: "Sing In Page",bgColor: Colors.white,),
+      appBar: AppBars(context: context,titleColor: Colors.black87,title: "Sing In Page",bgColor: Colors.white),
       body: const SingIn(),
     );
   }
@@ -100,6 +96,8 @@ class _SingInState extends State<SingIn> {
                           _id = _user?.id!;
                             pref.setString(token,_token!);
                             pref.setString(id,_id!);
+
+                            print("$_id");
                             Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) =>  const HomePage()));
                         }else
                           {

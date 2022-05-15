@@ -50,7 +50,6 @@ class ApiService {
             final response = await http.get(
                 Uri.parse(baseApiLink+"/:${id!}"),
             );
-
             if (response.statusCode == 200) {
                 List<RegistrationModel> list = [];
 
@@ -60,8 +59,52 @@ class ApiService {
                 return list;
             }
             else {
-                throw Exception('Failed to load album');
+                throw Exception('Failed to load');
             }
+        }
+    }
+
+    Future<RegistrationModel> getSingleUser(String id)async{
+        print("repo $id");
+
+       try {
+           final response = await http.get(
+               Uri.parse(baseApiLink + "/:$id"),
+           );
+
+           if (response.statusCode == 200) {
+               return RegistrationModel.fromJson(jsonDecode(response.body));
+           }
+           else {
+               throw Exception('Failed to load');
+           }
+       }catch(e){
+           throw Exception(e);
+       }
+    }
+
+    Future<int> updateUser(String id,String? firstName,String? lastName)async{
+
+        try{
+            final response = await http.put(
+                Uri.parse(baseApiLink + "/:$id"),
+                headers: <String, String>{
+                    'Content-Type': 'application/json; charset=UTF-8',
+                },
+                body: jsonEncode(<String,String>{
+                    "firstname":firstName!,
+                    "lastname":lastName!,
+                }),
+            );
+            if (response.statusCode == 200) {
+
+                return 200;
+            }
+            else {
+                throw Exception('Failed to load');
+            }}
+            catch(e){
+                throw Exception(e);
         }
     }
 }

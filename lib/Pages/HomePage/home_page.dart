@@ -10,6 +10,7 @@ import '../../Models/todo_model.dart';
 import '../../screen_heigt_with.dart';
 import '../AppBars/app_bars.dart';
 import '../DrawerPage/drawer_page.dart';
+import '../EditName/first_name_last_name_edit.dart';
 import '../InputForm/input_form.dart';
 import '../NecessaryStrings/necessary_strings.dart';
 
@@ -163,7 +164,7 @@ class _HomePageState extends State<HomePage> {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-
+                         Navigator.push(context, MaterialPageRoute(builder: (context) => const EditNamePage()));
                       },
                       child: Text(
                         "Edit Profile",
